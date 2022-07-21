@@ -74,7 +74,7 @@
 </main>
 <script>
  
-    
+    // turn seats if they already booked 
     function onloading(row,column){
         // <img type="image" disabled = true id="{{row}}-{{column}}" value="reserved" src="{% static 'images/bk.png' %}" style="height: 80px; width: 80px;"/>
 
@@ -83,15 +83,18 @@
         document.getElementById(id).value="reserved" ;
 
     }
+    // fonction if client click the image it will change colour 
     function bookSeat(element,column,row)
     {
         let val = document.getElementById("count").value;
         let id = row+"-"+column
         let value =document.getElementById(id).value
         
+        // if it is already reserved it will do nothing
         if (value==="reserved"){
             pass
         }
+        // if it was already clicked it turn original 
         else if (value==="clicked"){
             document.getElementById(id).src = "https://cinemaxia-bucket.s3.eu-north-1.amazonaws.com/seat.png";
             document.getElementById(id).value= "notclicked"
@@ -104,7 +107,9 @@
             document.getElementById("count").value = val;
 
         }
+        // if the customer clicked first time it will chow clicked
         else{
+            // This images from bucket i created for this project
         document.getElementById(id).src = "https://cinemaxia-bucket.s3.eu-north-1.amazonaws.com/booked.png";
         document.getElementById(id).value= "clicked"  
         document.getElementById('seat-locations').value += id+",";
