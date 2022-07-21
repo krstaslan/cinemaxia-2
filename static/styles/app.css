@@ -13,7 +13,11 @@
 img {
   width: 100%;
 }
+.cinemaxia_logo{
+  height: 75px;
+   width: 75px;
 
+}
 .tag > i.im {
   font-size: 1.5rem;
   margin-right: 0.5rem;

@@ -13,6 +13,11 @@
   border-bottom: 2px solid var(--color-main);
 }
 
+.cinemaxialogo {
+
+  height: 75px; 
+  width: 75px;
+}
 .mumble-block__preview {
   padding: 3rem 0;
 }
