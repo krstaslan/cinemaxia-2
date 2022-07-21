@@ -46,7 +46,7 @@
                     {% for column in columns %}
              
    
-                    <img  type="image" onclick="bookSeat(this.id,{{column}},{{row}})" id="{{row}}-{{column}}" value="notclicked" src="{% static 'images/seat.png' %}" style="height: 80px; width: 80px; "/> 
+                    <img  type="image" onclick="bookSeat(this.id,{{column}},{{row}})" id="{{row}}-{{column}}" value="notclicked" src="https://cinemaxia-bucket.s3.eu-north-1.amazonaws.com/seat.png" style="height: 80px; width: 80px; "/> 
                         
                         {%endfor%}<br>
                         {%endfor%}
@@ -79,7 +79,7 @@
         // <img type="image" disabled = true id="{{row}}-{{column}}" value="reserved" src="{% static 'images/bk.png' %}" style="height: 80px; width: 80px;"/>
 
         let id = row+"-"+column
-        document.getElementById(id).src = "{% static 'images/bk.png' %}";
+        document.getElementById(id).src = "https://cinemaxia-bucket.s3.eu-north-1.amazonaws.com/rezerved.png";
         document.getElementById(id).value="reserved" ;
 
     }
@@ -93,7 +93,7 @@
             pass
         }
         else if (value==="clicked"){
-            document.getElementById(id).src = "{% static 'images/seat.png' %}";
+            document.getElementById(id).src = "https://cinemaxia-bucket.s3.eu-north-1.amazonaws.com/seat.png";
             document.getElementById(id).value= "notclicked"
           
             let seats=document.getElementById('seat-locations').value
@@ -105,7 +105,7 @@
 
         }
         else{
-        document.getElementById(id).src = "{% static 'images/booked.png' %}";
+        document.getElementById(id).src = "https://cinemaxia-bucket.s3.eu-north-1.amazonaws.com/booked.png";
         document.getElementById(id).value= "clicked"  
         document.getElementById('seat-locations').value += id+",";
         console.log(document.getElementById('seat-locations').value)
