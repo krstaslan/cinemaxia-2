@@ -13,7 +13,11 @@
 img {
   width: 100%;
 }
+.cinemaxia_logo{
+  height: 75px;
+   width: 75px;
 
+}
 .tag > i.im {
   font-size: 1.5rem;
   margin-right: 0.5rem;
@@ -659,7 +663,7 @@ img {
   left: 0;
   bottom: 0;
   right: 0;
-  background: url(../images/pattern.jpg);
+  
 }
 
 .auth > .card {
