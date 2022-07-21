@@ -79,7 +79,6 @@
         // <img type="image" disabled = true id="{{row}}-{{column}}" value="reserved" src="{% static 'images/bk.png' %}" style="height: 80px; width: 80px;"/>
 
         let id = row+"-"+column
-        console.log(column);
         document.getElementById(id).src = "{% static 'images/bk.png' %}";
         document.getElementById(id).value="reserved" ;
 
