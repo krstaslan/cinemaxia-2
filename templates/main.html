@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
+        <!-- Dev Search UI -->
+        <link rel="stylesheet" href="{% static 'styles/app.css' %}" />
+
+        <title>Cinema Rezervation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!-- Header Section -->
+<header class="header">
+    <div class="container container--narrow">
+        <a href="{% url 'home' %}" class="header__logo">
+            <img src="{% static 'images/logo.png' %} " style="height: 75px; width: 75px; " alt="Cinemaxia" />
+        </a>
+
+        <nav class="header__nav">
+            <input type="checkbox" id="responsive-menu" />
+            <label for="responsive-menu" class="toggle-menu">
+                <span>Menu</span>
+                <div class="toggle-menu__lines"></div>
+            </label>
+            <ul class="header__menu">
+                <li class="header__menuItem"><a href="{% url 'home' %}">Movies</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+        <h1>Cinama Reservation</h1>
+        {% block content %}
+
+        {% endblock content %}
+        
+        <script src="{% static 'uikit/app.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+    </body>
+</html>

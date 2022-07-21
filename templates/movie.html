@@ -1,0 +1,127 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+<main class="profile my-md">
+    <div class="container">
+        <div class="layout">
+            <div class="column column--1of3">
+                
+                <div class="card text-center">
+                    <div >
+                        <img class="singleProject__preview" src="{{movie.imageURL}}" alt="{{movie.name}} thumbnail" >
+                        <h2 class="singleProject__title">{{movie.name}}</h2>
+                    </div>
+                </div>
+            </div>
+                <div class="column column--2of3">
+                <form method="POST">
+                    <div class="devInfo">
+                        <div class="devInfo__otherSkills">
+                            <span class="tag tag--pill tag--sub tag--lg">
+                                <label for="form-control" style="font-weight: bold;">Available</label>
+                                <img  src="{% static 'images/seat.png' %}" style="height: 25px; width: 25px; "/> 
+                            </span> 
+                            <span class="tag tag--pill tag--sub tag--lg">
+                                <label for="form-control" style="font-weight: bold;">Selected</label>
+                                <img  src="{% static 'images/booked.png' %}" style="height: 25px; width: 25px; "/> 
+                            </span> 
+                                <span class="tag tag--pill tag--sub tag--lg">
+                                <label for="form-control" style="font-weight: bold;">Reserved</label>
+                                <img  src="{% static 'images/bk.png' %}" style="height: 25px; width: 35px; "/> 
+                            </span> 
+                            
+                        </div>
+                        {% csrf_token %}
+                        <label for="form-control" style="font-weight: bold;">Seat Numbers:</label>
+                        
+                        <input type="text" name= "seats" readonly="readonly"  class="form-control" id="seat-locations" background-color="#e6faff" name="booked_seats" value="">
+                        
+                        <label for="form-control" style="font-weight: bold;">Number of Seats:</label>
+                        <input type="text" readonly="readonly" class="form-control" id="count" name="count" value="">
+                <br>
+                <div class="jumbotron">
+        
+                    
+                    {%for row in rows %}
+                    {% for column in columns %}
+             
+   
+                    <img  type="image" onclick="bookSeat(this.id,{{column}},{{row}})" id="{{row}}-{{column}}" value="notclicked" src="{% static 'images/seat.png' %}" style="height: 80px; width: 80px; "/> 
+                        
+                        {%endfor%}<br>
+                        {%endfor%}
+                
+                </div>
+                {%for reserved in reserved_seats %}
+                <iframe onload="onloading({{reserved.rows}},{{reserved.columns}})" src="https://en.wikipedia.org" hidden ></iframe>
+                <!-- <img src onerror="onloading({{reserved.rows}},{{reserved.columns}})"/> -->
+                <!-- <img src="{% static 'images/bk.png' %}" style="height: 80px; width: 80px;" onload="onloading({{reserved.rows}},{{reserved.columns}})" />  -->
+                {%endfor%}
+                <div class="container">
+                    
+                    <button class="btn btn-danger" onclick="location.reload()" style="width: 30%; position: absolute; margin-left: 0px;">Clear Booked seats</button>
+                    <br>
+                    <br>
+                    <!-- <button class="btn btn-success" style="width: 70%; position: absolute;margin-left: 120px;">Confirm Booking</button> -->
+                    <input type="submit" class="btn btn-success" style="width: 30%; position: absolute; margin-left: 0px;" value="Confirm Booking">
+                </form>
+
+  
+    </div>
+</div>
+</div>
+</div>
+</main>
+<script>
+ 
+    
+    function onloading(row,column){
+        // <img type="image" disabled = true id="{{row}}-{{column}}" value="reserved" src="{% static 'images/bk.png' %}" style="height: 80px; width: 80px;"/>
+
+        let id = row+"-"+column
+        console.log(column);
+        document.getElementById(id).src = "{% static 'images/bk.png' %}";
+        document.getElementById(id).value="reserved" ;
+
+    }
+    function bookSeat(element,column,row)
+    {
+        let val = document.getElementById("count").value;
+        let id = row+"-"+column
+        let value =document.getElementById(id).value
+        
+        if (value==="reserved"){
+            pass
+        }
+        else if (value==="clicked"){
+            document.getElementById(id).src = "{% static 'images/seat.png' %}";
+            document.getElementById(id).value= "notclicked"
+          
+            let seats=document.getElementById('seat-locations').value
+            seats = seats.replace(id+"," ,"");
+            console.log(seats)
+            document.getElementById('seat-locations').value= seats
+            val = parseInt(val)-1;
+            document.getElementById("count").value = val;
+
+        }
+        else{
+        document.getElementById(id).src = "{% static 'images/booked.png' %}";
+        document.getElementById(id).value= "clicked"  
+        document.getElementById('seat-locations').value += id+",";
+        console.log(document.getElementById('seat-locations').value)
+        if(val)
+        {
+            val = parseInt(val)+1;
+            document.getElementById("count").value = val;
+        }
+        else{
+            document.getElementById("count").value = 1;
+        }
+      }
+        
+    }
+
+</script>
+
+{% endblock %}
